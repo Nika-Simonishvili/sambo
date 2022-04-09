@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Athlete;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Coach extends Model
+class Referee extends Model
 {
     use HasFactory;
 
@@ -15,10 +14,5 @@ class Coach extends Model
     public function fullname()
     {
         return $this->name . ' ' . $this->surname;
-    }
-    
-    public function athletes()
-    {
-        return $this->belongsToMany(Athlete::class);
     }
 }

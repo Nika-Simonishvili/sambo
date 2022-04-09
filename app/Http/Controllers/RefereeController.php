@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Athlete;
-use App\Models\Coach;
 use Illuminate\Http\Request;
 
-class AthleteController extends Controller
+class RefereeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,24 +13,7 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        $athlete = Athlete::create([
-            'name' => 'nika',
-            'surname' => 'simonishvili',
-            'birth_year' => 2000,
-            'weight' => 80,
-            'height' => 1.78,
-            'club' => 'LOMEBI',
-        ]);
-
-        $coach = Coach::create([
-            'name' => 'coach1',
-            'surname' => 'coach1surname',
-            'club' => 'LOMEBI',
-        ]);
-
-        $athlete->coaches()->attach($coach);
-
-        return $athlete->fullname();
+        //
     }
 
     /**

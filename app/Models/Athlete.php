@@ -12,6 +12,11 @@ class Athlete extends Model
 
     protected $guarded = [];
 
+    public function fullname()
+    {
+        return $this->name . ' ' . $this->surname;
+    }
+
     public function coaches() 
     {
         return $this->belongsToMany(Coach::class);
