@@ -17,6 +17,11 @@ class Referee extends Model
         return $this->name . ' ' . $this->surname;
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function tournaments()
     {
         return $this->belongsToMany(Tournament::class);

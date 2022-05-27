@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CoachStoreRequest extends FormRequest
+class RefereeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,7 @@ class CoachStoreRequest extends FormRequest
             'surname' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|string|min:4:',
-            'club' => 'required',
+            'description' => 'nullable',
         ];
     }
 }
