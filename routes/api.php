@@ -18,7 +18,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/admin', function () {
-    $admin = \App\Models\User::findOrFail(1);
-    return response(['admin' => $admin]);
-});
+Route::post('login', [\App\Http\Controllers\auth\LoginController::class ,'login']);
+
+Route::get('/coaches', [\App\Http\Controllers\CoachController::class, 'index'])->middleware('auth:sanctum');
+Route::post('coach-store', [\App\Http\Controllers\CoachController::class, 'store'])->middleware(['auth:sanctum', 'can:manage coach']);

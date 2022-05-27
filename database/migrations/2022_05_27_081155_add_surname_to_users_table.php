@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('athletes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id');
-            $table->integer('birth_year');
-            $table->decimal('weight');
-            $table->decimal('height');
-            $table->string('club');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('surname')->default('')->after('name');
         });
     }
 
@@ -31,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('athletes');
+        Schema::table('users', function (Blueprint $table) {
+            Schema::dropColumn('surname');
+        });
     }
 };

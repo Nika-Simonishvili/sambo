@@ -16,6 +16,11 @@ class Coach extends Model
     {
         return $this->name . ' ' . $this->surname;
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     
     public function athletes()
     {

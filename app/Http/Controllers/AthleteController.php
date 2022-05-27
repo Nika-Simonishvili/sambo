@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\AthleteStoreRequest;
 use App\Models\Athlete;
-use App\Models\Coach;
+use Spatie\Permission\Traits\HasRoles;
+
+
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AthleteController extends Controller
@@ -15,24 +18,7 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        $athlete = Athlete::create([
-            'name' => 'nika',
-            'surname' => 'simonishvili',
-            'birth_year' => 2000,
-            'weight' => 80,
-            'height' => 1.78,
-            'club' => 'LOMEBI',
-        ]);
 
-        $coach = Coach::create([
-            'name' => 'coach1',
-            'surname' => 'coach1surname',
-            'club' => 'LOMEBI',
-        ]);
-
-        $athlete->coaches()->attach($coach);
-
-        return $athlete->fullname();
     }
 
     /**
@@ -41,9 +27,18 @@ class AthleteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AthleteStoreRequest $request)
     {
-        //
+        $fields = $request->validated();
+
+        $athlete = Athlete::create([
+            'name' => $request['name'],
+            'surname' => $request['surname'],
+            'birth_year' => $request['birth_year'],
+            'weight' => $request['weight'],
+            'height' => $request['height'],
+            'club' => $request['club'],
+        ]);
     }
 
     /**
