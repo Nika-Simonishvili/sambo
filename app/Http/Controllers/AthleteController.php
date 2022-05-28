@@ -8,6 +8,8 @@ use Spatie\Permission\Traits\HasRoles;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AthleteController extends Controller
 {
@@ -29,15 +31,22 @@ class AthleteController extends Controller
      */
     public function store(AthleteStoreRequest $request)
     {
-        $fields = $request->validated();
+        $userData = $request->only(['name', 'surname', 'email']) + ['password' => Hash::make($request->password)];
+        $user = User::create($userData);
 
-        $athlete = Athlete::create([
-            'name' => $request['name'],
-            'surname' => $request['surname'],
-            'birth_year' => $request['birth_year'],
-            'weight' => $request['weight'],
-            'height' => $request['height'],
-            'club' => $request['club'],
+        $athlete = $user->athlete()->create([
+            'birth_year' => $request->birth_year,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'club' => $request->club
+        ]);
+
+        $coach = $athlete->coaches()->sync(Auth::user());
+
+        return response([
+            'message' => 'new athlete added',
+            'athlete' => $athlete,
+            'coach' => $coach
         ]);
     }
 

@@ -51,6 +51,11 @@ class User extends Authenticatable
 
     public function referee()
     {
-        return $this->hasOne(Coach::class);
+        return $this->hasOne(Referee::class);
+    }
+
+    public function athlete()
+    {
+        return $this->hasOne(Athlete::class);
     }
 }

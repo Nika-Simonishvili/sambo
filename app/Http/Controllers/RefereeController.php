@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RefereeStoreRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RefereeController extends Controller
 {
@@ -22,9 +25,18 @@ class RefereeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RefereeStoreRequest $request)
     {
-        //
+        $userData = $request->only(['name', 'surname', 'email']) + ['password' => Hash::make($request->password)];
+        $user = User::create($userData);
+
+        $referee = $user->referee()->create($request->only('description'));
+
+        return response([
+            'message' => 'new referee added',
+            'referee' => $referee
+        ]);
+
     }
 
     /**

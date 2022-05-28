@@ -22,3 +22,7 @@ Route::post('login', [\App\Http\Controllers\auth\LoginController::class ,'login'
 
 Route::get('/coaches', [\App\Http\Controllers\CoachController::class, 'index'])->middleware('auth:sanctum');
 Route::post('coach-store', [\App\Http\Controllers\CoachController::class, 'store'])->middleware(['auth:sanctum', 'can:manage coach']);
+
+Route::post('referee-store', [\App\Http\Controllers\RefereeController::class, 'store'])->middleware(['auth:sanctum', 'can:manage referee']);
+
+Route::post('athlete-store', [\App\Http\Controllers\AthleteController::class, 'store'])->middleware(['auth:sanctum', 'can:manage athlete']);
