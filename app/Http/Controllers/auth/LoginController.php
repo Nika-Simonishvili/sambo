@@ -11,6 +11,11 @@ use function response;
 
 class LoginController extends Controller
 {
+    public function username()
+    {
+        return 'username';
+    }
+    
     public function login(LoginRequest $request)
     {
         if (!Auth::attempt($request->validated())) {

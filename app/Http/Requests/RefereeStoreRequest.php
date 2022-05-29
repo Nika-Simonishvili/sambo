@@ -26,8 +26,6 @@ class RefereeStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'surname' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|string|min:4:',
             'description' => 'nullable',
         ];
     }

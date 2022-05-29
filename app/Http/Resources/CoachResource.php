@@ -18,8 +18,10 @@ class CoachResource extends JsonResource
         return [
             'name' => $this->user->name,
             'surname' => $this->user->surname,
+            'username' => $this->user->username,
             'email' => $this->user->email,
             'club' => $this->club,
+            'tel' => $this->tel,
             'roles' => $this->user->getRoleNames()
         ];
     }

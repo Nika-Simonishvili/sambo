@@ -18,7 +18,7 @@ class RefereeController extends Controller
      */
     public function index()
     {
-        return RefereeResource::collection(Referee::with('user')->get());
+        return RefereeResource::collection(Referee::all());
     }
 
     /**
@@ -29,10 +29,7 @@ class RefereeController extends Controller
      */
     public function store(RefereeStoreRequest $request)
     {
-        $userData = $request->only(['name', 'surname', 'email']) + ['password' => Hash::make($request->password)];
-        $user = User::create($userData);
-
-        $referee = $user->referee()->create($request->only('description'));
+        $referee = Referee::create($request->all());
 
         return response([
             'message' => 'new referee added',

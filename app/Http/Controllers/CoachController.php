@@ -18,7 +18,7 @@ class CoachController extends Controller
      */
     public function index()
     {
-        return CoachResource::collection(Coach::with('user')->get());
+        return CoachResource::collection(Coach::all());
     }
 
     /**
@@ -29,11 +29,11 @@ class CoachController extends Controller
      */
     public function store(CoachStoreRequest $request)
     {
-        $userData = $request->only(['name', 'surname', 'email']) + ['password' => Hash::make($request->password)];
+        $userData = $request->only(['name', 'surname', 'email', 'username']) + ['password' => Hash::make($request->password)];
         $user = User::create($userData);
 
        $coach = $user->coach()
-            ->create($request->only('club'));
+            ->create($request->only('club', 'tel'));
 
         $user->assignRole('coach');
 

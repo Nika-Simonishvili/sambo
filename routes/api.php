@@ -24,11 +24,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [LoginController::class ,'login']);
 
-Route::get('/coaches', [CoachController::class, 'index'])->middleware('auth:sanctum');
+Route::get('/coaches', [CoachController::class, 'index']);
 Route::post('coach-store', [CoachController::class, 'store'])->middleware(['auth:sanctum', 'can:manage coach']);
 
-Route::get('referees', [RefereeController::class, 'index'])->middleware('auth:sanctum');
+Route::get('referees', [RefereeController::class, 'index']);
 Route::post('referee-store', [RefereeController::class, 'store'])->middleware(['auth:sanctum', 'can:manage referee']);
 
-Route::get('athletes', [AthleteController::class, 'index'])->middleware('auth:sanctum');
+Route::get('athletes', [AthleteController::class, 'index']);
 Route::post('athlete-store', [AthleteController::class, 'store'])->middleware(['auth:sanctum', 'can:manage athlete']);

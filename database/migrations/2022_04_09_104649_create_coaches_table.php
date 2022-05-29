@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('coaches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->string('club');
+            $table->string('tel');
+            $table->foreignId('user_id')->onDelete('cascade');
             $table->timestamps();
         });
     }

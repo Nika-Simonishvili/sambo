@@ -15,9 +15,8 @@ class RefereeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->user->name,
-            'surname' => $this->user->surname,
-            'email' => $this->user->email,
+            'name' => $this->name,
+            'surname' => $this->surname,
             'description' => $this->description
         ];
     }

@@ -18,7 +18,7 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        return AthleteResource::collection(Athlete::with('user')->get());     
+        return AthleteResource::collection(Athlete::all());     
     }
 
     /**
@@ -29,17 +29,9 @@ class AthleteController extends Controller
      */
     public function store(AthleteStoreRequest $request)
     {
-        $userData = $request->only(['name', 'surname', 'email']) + ['password' => Hash::make($request->password)];
-        $user = User::create($userData);
+        $athlete = Athlete::create($request->all());
 
-        $athlete = $user->athlete()->create([
-            'birth_year' => $request->birth_year,
-            'weight' => $request->weight,
-            'height' => $request->height,
-            'club' => $request->club
-        ]);
-
-        $athlete->coaches()->sync(Auth::user());
+        $athlete->coaches()->sync(Auth::user()->coach->id);
 
         return response([
             'message' => 'new athlete added',

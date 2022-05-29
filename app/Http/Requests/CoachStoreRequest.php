@@ -26,9 +26,11 @@ class CoachStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'surname' => 'required',
-            'email' => 'required|email|unique:users',
+            'username' => 'required|unique:users,username',
             'password' => 'required|confirmed|string|min:4:',
+            'email' => 'email|unique:users',
             'club' => 'required',
+            'tel' => 'required|numeric|digits:9'
         ];
     }
 }
