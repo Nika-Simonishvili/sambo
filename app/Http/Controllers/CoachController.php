@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CoachStoreRequest;
+use App\Http\Resources\CoachResource;
 use App\Models\Coach;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -17,11 +18,7 @@ class CoachController extends Controller
      */
     public function index()
     {
-        $coaches = User::has('coach')->get();
-
-        return response([
-           'coaches' => $coaches,
-        ]);
+        return CoachResource::collection(Coach::with('user')->get());
     }
 
     /**
@@ -42,7 +39,7 @@ class CoachController extends Controller
 
         return response([
             'message' => 'New coach added',
-            'coach' => $coach
+            'coach' => new CoachResource($coach)
         ]);
     }
 

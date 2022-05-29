@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\AthleteStoreRequest;
+use App\Http\Resources\AthleteResource;
 use App\Models\Athlete;
-use Spatie\Permission\Traits\HasRoles;
-
-
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +18,7 @@ class AthleteController extends Controller
      */
     public function index()
     {
-
+        return AthleteResource::collection(Athlete::with('user')->get());     
     }
 
     /**
@@ -41,12 +39,11 @@ class AthleteController extends Controller
             'club' => $request->club
         ]);
 
-        $coach = $athlete->coaches()->sync(Auth::user());
+        $athlete->coaches()->sync(Auth::user());
 
         return response([
             'message' => 'new athlete added',
-            'athlete' => $athlete,
-            'coach' => $coach
+            'athlete' => new AthleteResource($athlete)
         ]);
     }
 

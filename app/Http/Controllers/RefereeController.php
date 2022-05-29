@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RefereeStoreRequest;
+use App\Http\Resources\RefereeResource;
+use App\Models\Referee;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +18,7 @@ class RefereeController extends Controller
      */
     public function index()
     {
-        //
+        return RefereeResource::collection(Referee::with('user')->get());
     }
 
     /**
@@ -34,7 +36,7 @@ class RefereeController extends Controller
 
         return response([
             'message' => 'new referee added',
-            'referee' => $referee
+            'referee' => new RefereeResource($referee)
         ]);
 
     }

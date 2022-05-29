@@ -18,6 +18,11 @@ class Athlete extends Model
         return $this->name . ' ' . $this->surname;
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function coaches() 
     {
         return $this->belongsToMany(Coach::class);

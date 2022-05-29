@@ -4,6 +4,7 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\auth\LoginRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 
 use function response;
@@ -21,11 +22,10 @@ class LoginController extends Controller
         }
 
         $token = Auth::user()->createToken('accesstoken')->plainTextToken;
-        $roles = Auth::user()->getRoleNames();
 
         return response([
             'message' => 'OK',
-            'user' => Auth::user(),
+            'user' => new UserResource(Auth::user()),
             'token' => $token,
         ]);
     }

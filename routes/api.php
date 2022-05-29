@@ -2,6 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoachController;
+use App\Http\Controllers\AthleteController;
+use App\Http\Controllers\RefereeController;
+use App\Http\Controllers\auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,11 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', [\App\Http\Controllers\auth\LoginController::class ,'login']);
+Route::post('login', [LoginController::class ,'login']);
 
-Route::get('/coaches', [\App\Http\Controllers\CoachController::class, 'index'])->middleware('auth:sanctum');
-Route::post('coach-store', [\App\Http\Controllers\CoachController::class, 'store'])->middleware(['auth:sanctum', 'can:manage coach']);
+Route::get('/coaches', [CoachController::class, 'index'])->middleware('auth:sanctum');
+Route::post('coach-store', [CoachController::class, 'store'])->middleware(['auth:sanctum', 'can:manage coach']);
 
-Route::post('referee-store', [\App\Http\Controllers\RefereeController::class, 'store'])->middleware(['auth:sanctum', 'can:manage referee']);
+Route::get('referees', [RefereeController::class, 'index'])->middleware('auth:sanctum');
+Route::post('referee-store', [RefereeController::class, 'store'])->middleware(['auth:sanctum', 'can:manage referee']);
 
-Route::post('athlete-store', [\App\Http\Controllers\AthleteController::class, 'store'])->middleware(['auth:sanctum', 'can:manage athlete']);
+Route::get('athletes', [AthleteController::class, 'index'])->middleware('auth:sanctum');
+Route::post('athlete-store', [AthleteController::class, 'store'])->middleware(['auth:sanctum', 'can:manage athlete']);
