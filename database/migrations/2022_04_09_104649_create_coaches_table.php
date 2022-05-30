@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('club');
             $table->string('tel');
-            $table->foreignId('user_id')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -69,6 +69,10 @@ class RefereeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Referee::destroy($id);
+
+        return  response([
+            'message' => 'Referee deleted.'
+        ]);
     }
 }

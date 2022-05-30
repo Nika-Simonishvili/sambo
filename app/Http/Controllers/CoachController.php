@@ -74,6 +74,11 @@ class CoachController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $coach = Coach::FindOrFail($id);
+        $coach->user()->delete();
+
+        return  response([
+            'message' => 'coach deleted.'
+        ]);
     }
 }

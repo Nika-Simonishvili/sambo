@@ -70,6 +70,10 @@ class AthleteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Athlete::destroy($id);
+
+        return  response([
+            'message' => 'Athlete deleted.'
+        ]);
     }
 }

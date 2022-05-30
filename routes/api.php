@@ -1,34 +1,33 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\RefereeController;
 use App\Http\Controllers\auth\LoginController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+// login  route
 Route::post('login', [LoginController::class ,'login']);
 
-Route::get('/coaches', [CoachController::class, 'index']);
-Route::post('coach-store', [CoachController::class, 'store'])->middleware(['auth:sanctum', 'can:manage coach']);
+// coach routes
+Route::controller(CoachController::class)->middleware(['auth:sanctum', 'can:manage coach'])->group(function () {
+    Route::get('coaches', [CoachController::class, 'index'])->withoutMiddleware(['auth:sanctum', 'can:manage coach']);
+    Route::post('coach-store','store');
+    Route::delete('coach/{id}','destroy');
+});
 
-Route::get('referees', [RefereeController::class, 'index']);
-Route::post('referee-store', [RefereeController::class, 'store'])->middleware(['auth:sanctum', 'can:manage referee']);
 
-Route::get('athletes', [AthleteController::class, 'index']);
-Route::post('athlete-store', [AthleteController::class, 'store'])->middleware(['auth:sanctum', 'can:manage athlete']);
+// athlete routes
+Route::controller(AthleteController::class)->middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
+    Route::get('athletes','index')->withoutMiddleware(['auth:sanctum', 'can:manage athlete']);
+    Route::post('athlete-store','store');
+    Route::delete('athlete/{id}', 'destroy');
+});
+
+
+// referee routes
+Route::controller(RefereeController::class)->middleware(['auth:sanctum', 'can:manage referee'])->group(function () {
+    Route::get('referees','index')->withoutMiddleware(['auth:sanctum', 'can:manage referee']);
+    Route::post('referee-store','store');
+    Route::delete('referee/{id}','destroy');
+});

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('athlete_coach', function (Blueprint $table) {
-            $table->foreignId('athlete_id');
-            $table->foreignId('coach_id');
+            $table->foreignId('athlete_id')->constrained()->onDelete('cascade');
+            $table->foreignId('coach_id')->constrained()->onDelete('cascade');
         });
     }
 
