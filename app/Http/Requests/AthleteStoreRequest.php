@@ -26,7 +26,7 @@ class AthleteStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'surname' => 'required',
-            'birth_year' => 'required|digits:4|integer|min:1900|max:'.(date('Y')),
+            'date_of_birth' => 'required|date|date_format:m/d/Y|before:today',
             'weight' => 'required|numeric|min:0',
             'height' => 'required|numeric|min:0',
             'club' => 'required'

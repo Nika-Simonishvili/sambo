@@ -30,7 +30,7 @@ class CoachStoreRequest extends FormRequest
             'password' => 'required|confirmed|string|min:4:',
             'email' => 'email|unique:users',
             'club' => 'required',
-            'tel' => 'required|numeric|digits:9'
+            'tel' => 'required|numeric|digits_between:1,14'
         ];
     }
 }

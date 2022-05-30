@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('surname');
-            $table->integer('birth_year');
+            $table->date('date_of_birth');
             $table->decimal('weight');
             $table->decimal('height');
             $table->string('club');

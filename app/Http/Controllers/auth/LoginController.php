@@ -21,7 +21,7 @@ class LoginController extends Controller
         if (!Auth::attempt($request->validated())) {
             return response([
                 'errors' => [
-                    'password' => 'password or email is incorrect'
+                    'password' => 'password is incorrect'
                 ],
             ], 422);
         }
