@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AthleteStoreRequest;
 use App\Http\Resources\AthleteResource;
 use App\Models\Athlete;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AthleteController extends Controller
 {
@@ -47,7 +45,7 @@ class AthleteController extends Controller
      */
     public function show($id)
     {
-        //
+        return response(['athlete' => new AthleteResource(Athlete::findOrFail($id))]);
     }
 
     /**

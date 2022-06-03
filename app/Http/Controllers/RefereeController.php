@@ -46,7 +46,7 @@ class RefereeController extends Controller
      */
     public function show($id)
     {
-        //
+        return response(['referee' => new RefereeResource(Referee::findOrFail($id))]);
     }
 
     /**
@@ -58,7 +58,15 @@ class RefereeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Referee::findOrFail($id)->update([
+            'name' => $request->name,
+            'surname' => $request->surname,
+            'description' => $request->description,
+        ]);
+
+        return response([
+            'message' => 'Referee Updated.'
+        ]);
     }
 
     /**
