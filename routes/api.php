@@ -33,4 +33,4 @@ Route::middleware(['auth:sanctum', 'can:manage referee'])->group(function () {
     Route::delete('referee/{id}',[RefereeController::class, 'destroy']);
 });
 Route::get('referees',[RefereeController::class, 'index']);
-Route::get('referee/{id}',[RefereeController::class, 'show']);
+Route::get('referees/{id}',[RefereeController::class, 'show']);
