@@ -39,3 +39,4 @@ Route::get('referee/{id}',[RefereeController::class, 'show']);
 // tournament routes
 Route::get('tournament', [TournamentController::class, 'index']);
 Route::post('tournament-store', [TournamentController::class, 'store']);
+
