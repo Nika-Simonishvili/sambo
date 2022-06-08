@@ -4,12 +4,15 @@ namespace App\Models;
 
 use App\Models\Athlete;
 use App\Models\Referee;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tournament extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 
     public function athletes()
     {

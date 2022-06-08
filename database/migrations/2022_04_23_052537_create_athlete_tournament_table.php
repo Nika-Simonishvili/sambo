@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('athlete_tournament', function (Blueprint $table) {
             $table->foreignId('athlete_id');
             $table->foreignId('tournament_id');
+            $table->timestamps();
         });
     }
 

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CoachController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\RefereeController;
+use App\Http\Controllers\TournamentController;
 use App\Http\Controllers\auth\LoginController;
 
 // login  route
@@ -19,12 +20,12 @@ Route::get('coaches/{id}', [CoachController::class, 'show']);
 
 
 // athlete routes
-Route::controller(AthleteController::class)->middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
-    Route::get('athletes','index')->withoutMiddleware(['auth:sanctum', 'can:manage athlete']);
-    Route::get('athletes/{id}','show')->withoutMiddleware(['auth:sanctum', 'can:manage athlete']);
-    Route::post('athlete-store','store');
-    Route::delete('athlete/{id}', 'destroy');
+Route::middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
+    Route::post('athlete-store', [AthleteController::class, 'store']);
+    Route::delete('athlete/{id}',  [AthleteController::class, 'destroy']);
 });
+Route::get('athletes', [AthleteController::class, 'index']);
+Route::get('athletes/{id}', [AthleteController::class, 'show']);
 
 
 // referee routes
@@ -34,3 +35,7 @@ Route::middleware(['auth:sanctum', 'can:manage referee'])->group(function () {
 });
 Route::get('referees',[RefereeController::class, 'index']);
 Route::get('referee/{id}',[RefereeController::class, 'show']);
+
+// tournament routes
+Route::get('tournament', [TournamentController::class, 'index']);
+Route::post('tournament-store', [TournamentController::class, 'store']);

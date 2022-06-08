@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('tournaments', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('location');
             $table->date('start_date');
             $table->date('end_date');
-            $table->date('athlete_registration_date');
             $table->timestamps();
         });
     }
