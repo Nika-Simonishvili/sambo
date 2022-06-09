@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TournamentStoreRequest;
+use App\Http\Resources\TournamentResource;
 use App\Models\Tournament;
 
 class TournamentController extends Controller
 {
+
     public function index()
     {
-        $tournament = Tournament::with('referees')->get();
-        return response([
-            'tournament' => $tournament,
-//            'referees' => $tournament->referees
-        ]);
+        return TournamentResource::collection(Tournament::with('referees')->get());
     }
 
     public function store(TournamentStoreRequest $request)
