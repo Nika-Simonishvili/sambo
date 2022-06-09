@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Hash;
 
 class RefereeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
+        $this->middleware('can:manage referee', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

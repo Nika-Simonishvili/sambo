@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AthleteController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
+        $this->middleware('can:manage athlete', ['except' => ['index', 'show']]);
+    }
     /**
      * Display a listing of the resource.
      *

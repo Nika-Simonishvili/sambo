@@ -11,30 +11,31 @@ use App\Http\Controllers\auth\LoginController;
 Route::post('login', [LoginController::class ,'login']);
 
 // coach routes
-Route::middleware(['auth:sanctum', 'can:manage coach'])->group(function () {
-    Route::post('coach-store',[CoachController::class, 'store']);
-    Route::delete('coach/{id}',[CoachController::class, 'destroy']);
+Route::controller(CoachController::class)->group(function () {
+    Route::get('coaches', 'index');
+    Route::get('coaches/{id}', 'show');
+    Route::post('coach-store', 'store');
+    Route::delete('coach/{id}', 'destroy');
 });
-Route::get('coaches', [CoachController::class, 'index']);
-Route::get('coaches/{id}', [CoachController::class, 'show']);
 
 
 // athlete routes
-Route::middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
-    Route::post('athlete-store', [AthleteController::class, 'store']);
-    Route::delete('athlete/{id}',  [AthleteController::class, 'destroy']);
+Route::controller(AthleteController::class)->group(function () {
+    Route::get('athletes', 'index');
+    Route::get('athletes/{id}', 'show');
+    Route::post('athlete-store',  'store');
+    Route::delete('athlete/{id}', 'destroy');
 });
-Route::get('athletes', [AthleteController::class, 'index']);
-Route::get('athletes/{id}', [AthleteController::class, 'show']);
 
 
 // referee routes
-Route::middleware(['auth:sanctum', 'can:manage referee'])->group(function () {
-    Route::post('referee-store',[RefereeController::class, 'store']);
-    Route::delete('referee/{id}',[RefereeController::class, 'destroy']);
+Route::controller(RefereeController::class)->group(function () {
+    Route::get('referees', 'index');
+    Route::get('referee/{id}', 'show');
+    Route::put('referee/{id}/edit', 'update');
+    Route::post('referee-store', 'store');
+    Route::delete('referee/{id}', 'destroy');
 });
-Route::get('referees',[RefereeController::class, 'index']);
-Route::get('referee/{id}',[RefereeController::class, 'show']);
 
 // tournament routes
 Route::get('tournament', [TournamentController::class, 'index']);
