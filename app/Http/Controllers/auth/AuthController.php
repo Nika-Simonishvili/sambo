@@ -9,8 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 use function response;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum', ['only' => ['logout']]);
+    }
+
     public function username()
     {
         return 'username';
@@ -32,6 +37,15 @@ class LoginController extends Controller
             'message' => 'OK',
             'user' => new UserResource(Auth::user()),
             'token' => $token,
+        ]);
+    }
+
+    public function logout()
+    {
+        Auth::user()->tokens()->delete();
+
+        return response([
+            'message' => 'Logged  out.'
         ]);
     }
 }

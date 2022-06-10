@@ -5,10 +5,14 @@ use App\Http\Controllers\CoachController;
 use App\Http\Controllers\AthleteController;
 use App\Http\Controllers\RefereeController;
 use App\Http\Controllers\TournamentController;
-use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\auth\AuthController;
 
+// check middlewares in controllers
 // login  route
-Route::post('login', [LoginController::class ,'login']);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('logout', 'logout');
+});
 
 // coach routes
 Route::controller(CoachController::class)->group(function () {
