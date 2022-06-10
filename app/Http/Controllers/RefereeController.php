@@ -34,7 +34,12 @@ class RefereeController extends Controller
      */
     public function store(RefereeStoreRequest $request)
     {
-        $referee = Referee::create($request->all());
+        $referee = Referee::create($request->only(['name', 'surname', 'description']));
+
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture')->store('images/referees');
+            $referee->update(['profile_picture' => $image]);
+        }
 
         return response([
             'message' => 'new referee added',

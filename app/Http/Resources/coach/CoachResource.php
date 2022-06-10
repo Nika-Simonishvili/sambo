@@ -22,6 +22,7 @@ class CoachResource extends JsonResource
             'email' => $this->user->email,
             'club' => $this->club,
             'tel' => $this->tel,
+            'profile_picture' => $this->user->profile_picture,
             'roles' => $this->user->getRoleNames()
         ];
     }

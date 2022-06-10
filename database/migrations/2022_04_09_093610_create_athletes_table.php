@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('weight');
             $table->decimal('height');
             $table->string('club');
+            $table->string('profile_picture')->nullable();
             $table->timestamps();
         });
     }

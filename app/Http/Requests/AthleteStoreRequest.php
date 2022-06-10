@@ -29,7 +29,8 @@ class AthleteStoreRequest extends FormRequest
             'date_of_birth' => 'required|date|date_format:m/d/Y|before:today',
             'weight' => 'required|numeric|min:0',
             'height' => 'required|numeric|min:0',
-            'club' => 'required'
+            'club' => 'required',
+            'profile_picture' => 'file|mimes:jpeg,png,jpg|max:1024'
         ];
     }
 }

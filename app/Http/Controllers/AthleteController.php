@@ -32,6 +32,7 @@ class AthleteController extends Controller
      */
     public function store(AthleteStoreRequest $request)
     {
+
         $athlete = Athlete::create($request->all());
 
         $athlete->coaches()->sync(Auth::user()->coach->id);

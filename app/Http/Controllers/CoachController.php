@@ -38,6 +38,11 @@ class CoachController extends Controller
     public function store(CoachStoreRequest $request)
     {
         $userData = $request->only(['name', 'surname', 'email', 'username']) + ['password' => Hash::make($request->password)];
+
+        if ($request->hasFile('profile_picture')) {
+           $userData['profile_picture'] = $request->file('profile_picture')->store('images/coaches');
+        }
+
         $user = User::create($userData);
 
        $coach = $user->coach()

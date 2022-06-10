@@ -27,6 +27,7 @@ class RefereeStoreRequest extends FormRequest
             'name' => 'required',
             'surname' => 'required',
             'description' => 'nullable',
+            'profile_picture' => 'file|mimes:jpeg,png,jpg|max:1024'
         ];
     }
 }

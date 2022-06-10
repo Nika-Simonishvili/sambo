@@ -17,7 +17,8 @@ class RefereeResource extends JsonResource
         return [
             'name' => $this->name,
             'surname' => $this->surname,
-            'description' => $this->description
+            'description' => $this->description,
+            'profile_picture' => $this->profile_picture
         ];
     }
 }
