@@ -18,6 +18,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(CoachController::class)->group(function () {
     Route::get('coaches', 'index');
     Route::get('coaches/{id}', 'show');
+    Route::get('coaches/{id}/getAthletes', 'getAthletes');
     Route::post('coach-store', 'store');
     Route::delete('coach/{id}', 'destroy');
 });

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CoachStoreRequest;
-use App\Http\Resources\CoachResource;
+use App\Http\Resources\coach\CoachResource;
+use App\Http\Resources\coach\CoachsAthletesResource;
 use App\Models\Coach;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -14,8 +15,8 @@ class CoachController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:sanctum', ['except' => ['index', 'show']]);
-        $this->middleware('can:manage coach', ['except' => ['index', 'show']]);
+        $this->middleware('auth:sanctum', ['except' => ['index', 'show', 'getAthletes']]);
+        $this->middleware('can:manage coach', ['except' => ['index', 'show', 'getAthletes']]);
     }
 
     /**
@@ -59,6 +60,13 @@ class CoachController extends Controller
     public function show($id)
     {
         return response(['coach' => new CoachResource(Coach::findOrFail($id))]);
+    }
+
+    public function getAthletes($id)
+    {
+        $coach = Coach::find($id);
+
+        return CoachsAthletesResource::collection($coach->athletes);
     }
 
     /**

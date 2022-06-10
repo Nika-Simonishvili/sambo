@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\coach;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TournamentResource extends JsonResource
+class CoachsAthletesResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,11 +15,12 @@ class TournamentResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'title' => $this->title,
-            'location' => $this->location,
-            'start date' => $this->start_date,
-            'end date' => $this->end_date,
-            'referees' => RefereeResource::collection($this->referees)
+            'name' => $this->name,
+            'surname' => $this->surname,
+            'date_of_birth' => $this->date_of_birth,
+            'weight' => $this->weight,
+            'height' => $this->height,
+            'club' => $this->club,
         ];
     }
 }

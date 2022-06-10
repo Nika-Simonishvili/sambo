@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RefereeStoreRequest;
-use App\Http\Resources\RefereeResource;
+use App\Http\Resources\referee\RefereeResource;
 use App\Models\Referee;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class RefereeController extends Controller
 {

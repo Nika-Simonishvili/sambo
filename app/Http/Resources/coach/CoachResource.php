@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\coach;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\RolePermission\Resources\PermissionResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class CoachResource extends JsonResource
 {

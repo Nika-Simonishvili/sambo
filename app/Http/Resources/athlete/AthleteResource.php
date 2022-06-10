@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\athlete;
 
+use App\Http\Resources\coach\CoachResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AthleteResource extends JsonResource
@@ -21,7 +22,7 @@ class AthleteResource extends JsonResource
             'weight' => $this->weight,              
             'height' => $this->height,
             'club' => $this->club,    
-            'coaches' => CoachResource::collection($this->coaches)                        
+            'coaches' => CoachResource::collection($this->coaches)
         ];
     }
 }

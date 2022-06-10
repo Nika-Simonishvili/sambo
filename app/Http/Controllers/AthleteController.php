@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\AthleteStoreRequest;
-use App\Http\Resources\AthleteResource;
+use App\Http\Resources\athlete\AthleteResource;
 use App\Models\Athlete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +17,7 @@ class AthleteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
