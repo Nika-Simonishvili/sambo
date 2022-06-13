@@ -63,7 +63,7 @@ class CoachController extends Controller
 
     public function getAthletes($id)
     {
-        $coach = Coach::find($id);
+        $coach = User::find($id)->coach;
 
         return CoachsAthletesResource::collection($coach->athletes);
     }

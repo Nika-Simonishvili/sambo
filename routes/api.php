@@ -22,7 +22,6 @@ Route::get('coaches', [CoachController::class, 'index']);
 Route::get('coaches/{id}', [CoachController::class, 'show']);
 Route::get('coaches/{id}/getAthletes', [CoachController::class, 'getAthletes']);
 
-
 // athlete routes
 Route::middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
     Route::post('athlete-store',  [AthleteController::class, 'store']);
@@ -30,7 +29,6 @@ Route::middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
 });
 Route::get('athletes', [AthleteController::class, 'index']);
 Route::get('athletes/{id}', [AthleteController::class, 'show']);
-
 
 // referee routes
 Route::middleware(['auth:sanctum', 'can:manage referee'])->group(function () {
@@ -45,5 +43,6 @@ Route::get('referee/{id}', [RefereeController::class, 'show']);
 Route::middleware(['auth:sanctum', 'can:manage tournament'])->group(function () {
     Route::post('tournament-store', [TournamentController::class, 'store']);
 });
-Route::get('tournament', [TournamentController::class, 'index']);
-
+Route::get('tournaments', [TournamentController::class, 'index']);
+Route::get('tournament/{id}', [TournamentController::class, 'show']);
+Route::post('tournament/{id}/addAthletes', [TournamentController::class, 'addAthleteOnTournament'])->middleware(['auth:sanctum', 'can:manage athlete', ]);
