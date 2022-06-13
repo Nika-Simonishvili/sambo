@@ -14,15 +14,14 @@ class Athlete extends Model
 
     protected $guarded = [];
 
-    public function setDateOfBirthAttribute($value)
-    {
-        $this->attributes['date_of_birth'] = Carbon::createFromFormat('m/d/Y', $value)->format('Y-m-d');
-    }
-
-    public function getDateOfBirthAttribute()
-    {
-        return Carbon::createFromFormat('Y-m-d', $this->attributes['date_of_birth'])->format('m/d/Y');
-    }
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'date_of_birth' => 'date',
+    ];
 
     public function fullname()
     {

@@ -13,12 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class CoachController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth:sanctum', ['except' => ['index', 'show', 'getAthletes']]);
-        $this->middleware('can:manage coach', ['except' => ['index', 'show', 'getAthletes']]);
-    }
-
     /**
      * Display a listing of the resource.
      *

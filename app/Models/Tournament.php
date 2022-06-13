@@ -14,6 +14,16 @@ class Tournament extends Model
 
     protected $guarded = [];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
+
     public function athletes()
     {
         return $this->belongsToMany(Athlete::class);

@@ -22,7 +22,7 @@ class TournamentController extends Controller
 
         return response([
             'message' => 'new tournament created',
-            'tournament' => $tournament
+            'tournament' => new TournamentResource($tournament)
         ]);
     }
 }
