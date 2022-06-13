@@ -23,11 +23,6 @@ class Athlete extends Model
         'date_of_birth' => 'date',
     ];
 
-    public function fullname()
-    {
-        return $this->name . ' ' . $this->surname;
-    }
-
     public function age()
     {
         return Carbon::parse($this->attributes['date_of_birth'])->age;
