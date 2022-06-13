@@ -28,6 +28,11 @@ class Athlete extends Model
         return $this->name . ' ' . $this->surname;
     }
 
+    public function age()
+    {
+        return Carbon::parse($this->attributes['date_of_birth'])->age;
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
