@@ -24,6 +24,7 @@ class AthleteResource extends JsonResource
             'weight' => $this->weight,              
             'height' => $this->height,
             'club' => $this->club,    
+            'profile_picture' => $this->profile_picture,
             'coaches' => CoachResource::collection($this->coaches)
         ];
     }

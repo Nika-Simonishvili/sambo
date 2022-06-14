@@ -23,6 +23,7 @@ class CoachsAthletesResource extends JsonResource
             'weight' => $this->weight,
             'height' => $this->height,
             'club' => $this->club,
+            'profile_picture' => $this->profile_picture,
         ];
     }
 }

@@ -30,7 +30,12 @@ class AthleteController extends Controller
      */
     public function store(AthleteStoreRequest $request)
     {
-        $athlete = Athlete::create($request->all());
+        $athlete = Athlete::create($request->except('profile_picture'));
+
+        if ($request->hasFile('profile_picture')) {
+            $image = $request->file('profile_picture')->store('images/athletes');
+            $athlete->update(['profile_picture' => $image]);
+        }
 
         $athlete->coaches()->sync(Auth::user()->coach->id);
 
@@ -69,6 +74,7 @@ class AthleteController extends Controller
                 'weight' => $request->weight,
                 'height' => $request->height,
                 'club' => $request->club,
+                'profile_picture' => $request->profile_picture
             ]);
             return response(['message' => 'sportsman updated.!!']);
         } else
