@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\AthleteStoreRequest;
+
+use App\Http\Requests\athletes\AthleteStoreRequest;
+use App\Http\Requests\athletes\AthleteUpdateRequest;
 use App\Http\Resources\athlete\AthleteResource;
 use App\Models\Athlete;
 use Illuminate\Http\Request;
@@ -17,18 +19,17 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        return AthleteResource::collection(Athlete::all());     
+        return AthleteResource::collection(Athlete::all());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(AthleteStoreRequest $request)
     {
-
         $athlete = Athlete::create($request->all());
 
         $athlete->coaches()->sync(Auth::user()->coach->id);
@@ -42,7 +43,7 @@ class AthleteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,26 +54,38 @@ class AthleteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AthleteUpdateRequest $request, $id)
     {
-        //
+        $athlete = Athlete::findOrFail($id);
+        if ($athlete->coaches()->where('coach_id', Auth::user()->coach->id)->exists()) {
+            $athlete->update([
+                'name' => $request->name,
+                'surname' => $request->surname,
+                'date_of_birth' => $request->date_of_birth,
+                'weight' => $request->weight,
+                'height' => $request->height,
+                'club' => $request->club,
+            ]);
+            return response(['message' => 'sportsman updated.!!']);
+        } else
+            return response(['message' => 'this is not your sportsman!!']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         Athlete::destroy($id);
 
-        return  response([
+        return response([
             'message' => 'Athlete deleted.'
         ]);
     }

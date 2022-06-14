@@ -25,6 +25,7 @@ Route::get('coaches/{id}/getAthletes', [CoachController::class, 'getAthletes']);
 // athlete routes
 Route::middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {
     Route::post('athlete-store',  [AthleteController::class, 'store']);
+    Route::put('athlete/{id}/edit', [AthleteController::class, 'update']);
     Route::delete('athlete/{id}', [AthleteController::class, 'destroy']);
 });
 Route::get('athletes', [AthleteController::class, 'index']);
@@ -42,6 +43,7 @@ Route::get('referee/{id}', [RefereeController::class, 'show']);
 // tournament routes
 Route::middleware(['auth:sanctum', 'can:manage tournament'])->group(function () {
     Route::post('tournament-store', [TournamentController::class, 'store']);
+    Route::post('tournament/{id}/addResult', [TournamentController::class, 'addResult']);
 });
 Route::get('tournaments', [TournamentController::class, 'index']);
 Route::get('tournament/{id}', [TournamentController::class, 'show']);
