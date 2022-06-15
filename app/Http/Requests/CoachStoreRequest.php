@@ -31,7 +31,7 @@ class CoachStoreRequest extends FormRequest
             'email' => 'email|unique:users',
             'club' => 'required',
             'tel' => 'required|numeric|digits_between:1,14',
-            'profile_picture' => 'file|mimes:jpeg,png,jpg|max:1024'
+            'profile_picture' => 'nullable|file|mimes:jpeg,png,jpg|max:1024'
         ];
     }
 }

@@ -58,7 +58,9 @@ class CoachController extends Controller
      */
     public function show($id)
     {
-        return response(['coach' => new CoachResource(Coach::findOrFail($id))]);
+        $user = User::findOrFail($id);
+
+        return response(['coach' => new CoachResource($user->coach)]);
     }
 
     public function getAthletes($id)

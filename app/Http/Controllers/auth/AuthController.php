@@ -30,6 +30,7 @@ class AuthController extends Controller
         $token = Auth::user()->createToken('accesstoken')->plainTextToken;
 
         return response([
+            'id' => Auth::id(),
             'message' => 'OK',
             'user' => new UserResource(Auth::user()),
             'token' => $token,
