@@ -20,8 +20,8 @@ class TournamentResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'location' => $this->location,
-            'start date' => $this->start_date->format('m/d/Y'),
-            'end date' => $this->end_date->format('m/d/Y'),
+            'start_date' => $this->start_date->format('m/d/Y'),
+            'end_date' => $this->end_date->format('m/d/Y'),
             'referees' => RefereeResource::collection($this->referees),
             'athletes' => AthleteResource::collection($this->athletes)
         ];
