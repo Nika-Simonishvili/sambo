@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (!Auth::attempt($request->validated())) {
             return response([
                 'errors' => [
-                    'password' => 'password is incorrect'
+                    'password' => 'პაროლი არასწორია.'
                 ],
             ], 422);
         }

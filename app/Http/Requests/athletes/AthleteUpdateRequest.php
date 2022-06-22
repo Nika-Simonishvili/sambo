@@ -33,4 +33,20 @@ class AthleteUpdateRequest extends FormRequest
             'profile_picture' => 'nullable|file|mimes:jpeg,png,jpg|max:1024'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'სახელის შეყვანა აუცილებელია.',
+            'surname.required' => 'გვარის შეყვანა აუცილებელია.',
+            'date_of_birth.required' => 'დაბადების თარიღის მითითება აუცილებელია.',
+            'date_of_birth.date_format' => 'დაბადების თარიღის ფორმატია თვე/დღე/წელი.',
+            'date_of_birth.before' => 'დაბადების თარიღი არ შეიძლება იყოს მომავალში.',
+            'weight.required' => 'წონის შეყვანა აუცილებელია.',
+            'weight.numeric' => 'წონა უნდა იყოს ციფრებით.',
+            'height.required' => 'სიმაღლის შეყვანა აუცილებელია.',
+            'height.numeric' => 'წონა უნდა იყოს ციფრებით.',
+            'club.required' => 'კლუბის შეყვანა აუცილებელია.',
+        ];
+    }
 }

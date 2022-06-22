@@ -30,4 +30,14 @@ class RefereeStoreRequest extends FormRequest
             'profile_picture' => 'nullable|file|mimes:jpeg,png,jpg|max:1024'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'სახელის შეყვანა აუცილებელია.',
+            'surname.required' => 'გვარის შეყვანა აუცილებელია.',
+            'profile_picture.mimes' => 'ფოტო უნდა იყოს jpeg ან png ან jpg გაფართოების.',
+            'profile_picture.max' => 'ფოტოს მაქსიმალური ზომაა 1მბ.'
+        ];
+    }
 }

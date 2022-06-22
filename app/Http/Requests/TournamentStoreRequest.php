@@ -31,4 +31,14 @@ class TournamentStoreRequest extends FormRequest
             'referees' => 'array'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'ტურნირის სახელის შეყვანა აუცილებელია.',
+            'location.required' => 'ტურნირის ჩატარების ადგილის შეყვანა აუცილებელია.',
+            'start_date.required' => 'ტურნირის დაწყების თარიღის შეყვანა აუცილებელია.',
+            'end_date.required' => 'ტურნირის დამთავრების თარიღის შეყვანა აუცილებელია.',
+        ];
+    }
 }

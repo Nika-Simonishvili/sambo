@@ -25,7 +25,16 @@ class LoginRequest extends FormRequest
     {
         return [
             'username' => 'required|exists:users',
-            'password' => 'required|min:4'
+            'password' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'username.required' => 'მომხმარებლის სახელის შეყვანა აუცილებელია.',
+            'username.exists' => 'მომხარებლის სახელი არ მოიძებნა.',
+            'password.required' => 'პაროლის შეყვანა აუცილებელია.',
         ];
     }
 }

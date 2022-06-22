@@ -34,4 +34,22 @@ class CoachStoreRequest extends FormRequest
             'profile_picture' => 'nullable|mimes:jpeg,png,jpg|max:1024'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'სახელის შეეყვანა აყცილებელია.',
+            'surname.required' => 'გვარის შეყვანა აუცილებელია.',
+            'username.required' => 'მომხმარებლის სახელის შეყვანა აუცილებელია.',
+            'username.unique' => 'მომხმარებლის სახელი დაკავებულია.',
+            'password.required' => 'პაროლის შეყვანა აუცილებელია',
+            'password.confirmed' => 'პაროლები არ ემთხვევა.',
+            'password.min' => 'პაროლის მინიმალური სიგრძე 5.',
+            'email.unique' => 'ე-მეილი დაკავებულია.',
+            'club.required' => 'კლუბის შეყვანა აუცილებელია.',
+            'tel.required' => 'ტელლეფონის ნომრის შეყვანა აუცილებელია.',
+            'tel.numeric' => 'ტელეფონის ნომერი უნდა შედგებოდეს მხოლოდ ციფრებისგან.',
+            'tel.digits_between' => 'ტელეფონის ნომერი უნდა იყოს 1-დან 14 ციფრამდე.',
+        ];
+    }
 }
