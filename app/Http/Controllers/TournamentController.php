@@ -65,13 +65,13 @@ class TournamentController extends Controller
 //        ]
 //    }
 
-        foreach ($request->all() as $data) {
-            Result::create([
-               'place' => $data->place,
-               'weight' => $data->weight,
-               'athlete_id' => $data->athlete_id
-            ]);
-        }
+//        foreach ($request->all() as $data) {
+//            Result::create([
+//               'place' => $data->place,
+//               'weight' => $data->weight,
+//               'athlete_id' => $data->athlete_id
+//            ]);
+//        }
 
     }
 }

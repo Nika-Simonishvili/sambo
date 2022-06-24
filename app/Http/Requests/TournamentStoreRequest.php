@@ -27,7 +27,7 @@ class TournamentStoreRequest extends FormRequest
             'title' => 'required',
             'location' => 'required',
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
             'referees' => 'array'
         ];
     }
@@ -39,6 +39,7 @@ class TournamentStoreRequest extends FormRequest
             'location.required' => 'ტურნირის ჩატარების ადგილის შეყვანა აუცილებელია.',
             'start_date.required' => 'ტურნირის დაწყების თარიღის შეყვანა აუცილებელია.',
             'end_date.required' => 'ტურნირის დამთავრების თარიღის შეყვანა აუცილებელია.',
+            'end_date.after' => 'დამთავრების თარიღი უნდა იყოს დაწყების თარიღის შემდეგ'
         ];
     }
 }

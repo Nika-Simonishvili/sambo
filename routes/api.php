@@ -47,4 +47,4 @@ Route::middleware(['auth:sanctum', 'can:manage tournament'])->group(function () 
 });
 Route::get('tournaments', [TournamentController::class, 'index']);
 Route::get('tournament/{id}', [TournamentController::class, 'show']);
-Route::post('tournament/{id}/addAthletes', [TournamentController::class, 'addAthleteOnTournament'])->middleware(['auth:sanctum', 'can:manage athlete', ]);
+Route::post('tournament/{id}/addAthletes', [TournamentController::class, 'addAthleteOnTournament'])->middleware(['auth:sanctum', 'can:manage athlete',]);
