@@ -28,9 +28,9 @@ class CoachStoreRequest extends FormRequest
             'surname' => 'required',
             'username' => 'required|unique:users,username',
             'password' => 'required|confirmed|string|min:4:',
-            'email' => 'email|unique:users',
+            // 'email' => 'email|unique:users',
             'club' => 'required',
-            'tel' => 'required|numeric|digits_between:1,14',
+            'tel' => 'required|numeric|digits_between:9,14',
             'profile_picture' => 'nullable|mimes:jpeg,png,jpg|max:1024'
         ];
     }
@@ -49,7 +49,7 @@ class CoachStoreRequest extends FormRequest
             'club.required' => 'კლუბის შეყვანა აუცილებელია.',
             'tel.required' => 'ტელლეფონის ნომრის შეყვანა აუცილებელია.',
             'tel.numeric' => 'ტელეფონის ნომერი უნდა შედგებოდეს მხოლოდ ციფრებისგან.',
-            'tel.digits_between' => 'ტელეფონის ნომერი უნდა იყოს 1-დან 14 ციფრამდე.',
+            'tel.digits_between' => 'ტელეფონის ნომერი უნდა შედგებოდეს 9-დან 14 ციფრამდე.',
         ];
     }
 }

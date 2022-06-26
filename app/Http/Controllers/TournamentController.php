@@ -14,7 +14,7 @@ class TournamentController extends Controller
 
     public function index()
     {
-        return TournamentResource::collection(Tournament::with('referees')->get());
+        return TournamentResource::collection(Tournament::latest()->with('referees')->get());
     }
 
     public function store(TournamentStoreRequest $request)
