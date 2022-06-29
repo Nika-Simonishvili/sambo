@@ -28,7 +28,7 @@ class TournamentStoreRequest extends FormRequest
             'location' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after:start_date',
-            'referees' => 'array'
+            'referees' => 'nullable|array'
         ];
     }
 

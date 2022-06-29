@@ -34,12 +34,12 @@ class CoachController extends Controller
         $userData = $request->only(['name', 'surname', 'email', 'username']) + ['password' => Hash::make($request->password)];
 
         if ($request->hasFile('profile_picture')) {
-           $userData['profile_picture'] = $request->file('profile_picture')->store('images/coaches');
+            $userData['profile_picture'] = $request->file('profile_picture')->store('images/coaches');
         }
 
         $user = User::create($userData);
 
-       $coach = $user->coach()
+        $coach = $user->coach()
             ->create($request->only('club', 'tel'));
 
         $user->assignRole('coach');
@@ -93,7 +93,7 @@ class CoachController extends Controller
         $coach = Coach::FindOrFail($id);
         $coach->user()->delete();
 
-        return  response([
+        return response([
             'message' => 'coach deleted.'
         ]);
     }

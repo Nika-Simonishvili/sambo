@@ -76,9 +76,9 @@ class AthleteController extends Controller
                 'club' => $request->club,
                 'profile_picture' => $request->profile_picture
             ]);
-            return response(['message' => 'sportsman updated.!!']);
+            return response(['message' => 'სპორტსმენის ინფორმაცია წარმატებით შეიცვალა.']);
         } else
-            return response(['message' => 'this is not your sportsman!!']);
+            return response(['message' => 'არ შეგიძლია სხვისი სპორტსმენის ინფორმაციის შეცვლა.']);
     }
 
     /**
