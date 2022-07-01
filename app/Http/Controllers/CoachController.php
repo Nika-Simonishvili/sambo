@@ -64,7 +64,7 @@ class CoachController extends Controller
 
     public function get_athletes($id)
     {
-        $coach = User::find($id)->coach;
+        $coach = User::find($id)->coach()->with('athletes')->first();
 
         return CoachsAthletesResource::collection($coach->athletes);
     }
