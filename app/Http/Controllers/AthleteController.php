@@ -19,7 +19,7 @@ class AthleteController extends Controller
      */
     public function index()
     {
-        return AthleteResource::collection(Athlete::all());
+        return AthleteResource::collection(Athlete::with('coaches')->get());
     }
 
     /**

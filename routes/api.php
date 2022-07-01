@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum', 'can:manage coach'])->group(function () {
 });
 Route::get('coaches', [CoachController::class, 'index']);
 Route::get('coaches/{id}', [CoachController::class, 'show']);
-Route::get('coaches/{id}/getAthletes', [CoachController::class, 'getAthletes']);
+Route::get('coaches/{id}/athletes', [CoachController::class, 'get_athletes']);
 
 // athlete routes
 Route::middleware(['auth:sanctum', 'can:manage athlete'])->group(function () {

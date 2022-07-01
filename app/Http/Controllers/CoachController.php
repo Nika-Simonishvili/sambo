@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class CoachController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +19,7 @@ class CoachController extends Controller
      */
     public function index()
     {
-        return CoachResource::collection(Coach::all());
+        return CoachResource::collection(Coach::with('user')->get());
     }
 
     /**
@@ -63,7 +62,7 @@ class CoachController extends Controller
         return response(['coach' => new CoachResource($user->coach)]);
     }
 
-    public function getAthletes($id)
+    public function get_athletes($id)
     {
         $coach = User::find($id)->coach;
 

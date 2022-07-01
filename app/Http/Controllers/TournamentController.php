@@ -14,7 +14,7 @@ class TournamentController extends Controller
 
     public function index()
     {
-        return TournamentResource::collection(Tournament::latest()->with('referees')->get());
+        return TournamentResource::collection(Tournament::latest()->with('referees', 'athletes')->get());
     }
 
     public function store(TournamentStoreRequest $request)
@@ -48,30 +48,6 @@ class TournamentController extends Controller
 
     public function addResult($id, ResultStoreRequest $request)
     {
-//        $response = {
-//            data : [
-//                  {'place' : 2,
-//                  'weight' : 2,
-//                  'at_id' : 5
-//                },
-//                  {'place' : 2,
-//                  'weight' : 2,
-//                  'at_id' : 5
-//                },
-//                  {'place' : 2,
-//                  'weight' : 2,
-//                  'at_id' : 5
-//                },
-//        ]
-//    }
-
-//        foreach ($request->all() as $data) {
-//            Result::create([
-//               'place' => $data->place,
-//               'weight' => $data->weight,
-//               'athlete_id' => $data->athlete_id
-//            ]);
-//        }
-
+        //
     }
 }
