@@ -28,17 +28,17 @@ class CoachStoreRequest extends FormRequest
             'surname' => 'required',
             'username' => 'required|unique:users,username',
             'password' => 'required|confirmed|string|min:4:',
-            // 'email' => 'email|unique:users',
+            'email' => 'nullable|email|unique:users',
             'club' => 'required',
             'tel' => 'required|numeric|digits_between:9,14',
-            'profile_picture' => 'nullable|mimes:jpeg,png,jpg|max:1024'
+            // 'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'სახელის შეეყვანა აყცილებელია.',
+            'name.required' => 'სახელის შეყვანა აუცილებელია.',
             'surname.required' => 'გვარის შეყვანა აუცილებელია.',
             'username.required' => 'მომხმარებლის სახელის შეყვანა აუცილებელია.',
             'username.unique' => 'მომხმარებლის სახელი დაკავებულია.',
